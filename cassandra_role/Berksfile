@@ -1,0 +1,7 @@
+source ENV['SUPERMARKET_URL']
+
+metadata
+
+group :integration do
+  cookbook 'instance_config', path: './test/cookbooks/instance_config'
+end

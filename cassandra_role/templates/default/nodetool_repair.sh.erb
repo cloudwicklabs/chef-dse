@@ -1,0 +1,8 @@
+#!/bin/sh
+# This file is managed through chef. Avoid making manual changes.
+#
+#/opt/cassandra/apache-cassandra-2.2.1/bin/nodetool status >> /tmp/nodetool_status.log
+
+echo "Starting nodetool repair job in host $(hostname) at $(date) " > /var/log/cassandra/nodetool_repair.log
+nodetool repair system >> /var/log/cassandra/nodetool_repair.log
+echo "Nodetool repair job is completed in host $(hostname) at $(date)" >> /var/log/cassandra/nodetool_repair.log

@@ -1,0 +1,15 @@
+name             'instance_config'
+maintainer       'cloudwick'
+maintainer_email 'rajendra@cloudwick.com'
+license          'All rights reserved'
+description      'Installs/Configures Cassandra'
+long_description 'Installs/Configures Cassandra'
+version          '1.0.1'
+
+supports 'centos'
+
+depends 'dse'
+depends 'java'
+depends 'lvm'
+depends 'sysctl'
+depends 'logrotate'

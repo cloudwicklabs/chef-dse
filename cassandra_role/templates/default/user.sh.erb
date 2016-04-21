@@ -1,0 +1,20 @@
+#!/bin/bash
+ps aux | grep [d]se > /dev/null
+DSE_PROCESS=$?
+netstat -plten | grep 9160 > /dev/null
+NETSTAT_PROCESS=$?
+
+if [ "$DSE_PROCESS" -eq 0 ] && [ "$NETSTAT_PROCESS" -eq 0 ]; then
+        echo "DSE is running, Running the cqlsh commands"
+        cqlsh <%= node['ipaddress']%> -u cassandra -p cassandra << EOF!!
+        desc keyspaces;
+        CREATE USER cloudadmin1 WITH PASSWORD 'cassandra123' SUPERUSER;
+        exit;
+EOF!!
+
+cqlsh <%= node['ipaddress']%> -u cloudadmin1 -p cassandra123 << EOF!!
+DROP USER cassandra;
+EOF!!
+else
+        echo "DSE is not running, cannot run cqlsh commands"
+fi
